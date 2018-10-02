@@ -34,6 +34,53 @@
                 $("#searchButton").click(function(e) 
                 {
                     var value = $("#searchBox").val(); 
+                    var fullDate = new Date();
+                    var currentDate = fullDate.getFullYear() + '-' + (fullDate.getUTCMonth() + 1) + '-' + fullDate.getDate();
+                    $.ajax({
+                        url: "https://newsapi.org/v2/everything?q=" + value + "&from=" + currentDate + "&sortBy=popularity&apikey=eefb3b6580ca4dc1b9dc45b5262acd40",
+                        //url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=Venom&maxResults=5&order=date&type=video&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY",
+                        dataType: "json",
+                        success: function(data) {
+                            let articles = data.articles;
+                            for(let i = 0; i < articles.length; ++i) {
+                                let article = articles[i];
+                                let id = "#box" + (i+1);
+                                let html = "<img src = \"" + article.urlToImage + "\" height = \"150\"/>";
+                                html += "<br>";
+                                html += "<a href = \"" + article.url + "\">" + article.title + "</a>";
+                                $(id).html(html);
+                                
+                            }
+                            console.log(data)
+                        },
+                        error: function(data) {
+                            console.log(data)
+                            console.log("Error")
+                        }
+                    });
+                    
+                    $.ajax({
+                        //url: "https://newsapi.org/v2/everything?q=" + value + "&from=" + currentDate + "&sortBy=popularity&apikey=eefb3b6580ca4dc1b9dc45b5262acd40",
+                        url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=5&order=date&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY",
+                        dataType: "json",
+                        success: function(data) {
+                            let items = data.items;
+                            var videoList = "<ul style = \"list-style-type:none\">"
+                            for(let i = 0; i < items.length; ++i) {
+                                videoList += "<li>";
+                                videoList += "<iframe width = \"640\" height = \"360\" src = \"http://www.youtube.com/embed/" + items[i].id.videoId + "\" />";
+                                videoList += "</li>";
+                            }
+                            
+                            $("#youtubeList").html(videoList);
+                        },
+                        error: function(data) {
+                            console.log(data)
+                            console.log("Error")
+                        }
+                    });
+                    
+                    
                     console.log(value);
                     e.preventDefault();
                 });
@@ -52,7 +99,10 @@
         <input type = "text" id = "searchBox" value = ""><br>
         <input id="searchButton" type="submit" value="Submit">
         
-        "<div id='myTable' width = 100%>"
+        <div id='myTable' width = 100%>
+        </div>
+        
+        <div id = "youtubeList">
         </div>
     </body>
 </html>
