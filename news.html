@@ -19,8 +19,6 @@
                     {
                         tableCode += "<td>";
                         tableCode += "<div style=\"background-color:lightblue\" id=\"box" + counter + "\">";
-                        tableCode += "<h3>box" + counter + "</h3>";
-                        tableCode += "<p>This is a paragraph.</p>"
                         tableCode += "</div>"
                         tableCode += "</td>"
                         
@@ -30,6 +28,25 @@
                 }
                 tableCode += "</table>"
                 $("#myTable").html(tableCode);
+                
+                var videoCode = "<table style=\"width:100%\">";
+                var counter2 = 1;
+                for (var i = 0; i < 3; i++)
+                {
+                    videoCode += "<tr>";
+                    for (var j = 1; j < 3;j++)
+                    {
+                        videoCode += "<td>";
+                        videoCode += "<div id=\"videoBox" + counter2 + "\">";
+                        videoCode += "</div>"
+                        videoCode += "</td>"
+                        
+                        counter2++;
+                    }
+                    videoCode += "</tr>";
+                }
+                videoCode += "</table>"
+                $("#youtubeList").html(videoCode);
                 
                 $("#searchButton").click(function(e) 
                 {
@@ -61,15 +78,14 @@
                     
                     $.ajax({
                         //url: "https://newsapi.org/v2/everything?q=" + value + "&from=" + currentDate + "&sortBy=popularity&apikey=eefb3b6580ca4dc1b9dc45b5262acd40",
-                        url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=5&order=date&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY",
+                        url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=6&order=date&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY",
                         dataType: "json",
                         success: function(data) {
                             let items = data.items;
-                            var videoList = "<ul style = \"list-style-type:none\">"
                             for(let i = 0; i < items.length; ++i) {
-                                videoList += "<li>";
-                                videoList += "<iframe width = \"640\" height = \"360\" src = \"http://www.youtube.com/embed/" + items[i].id.videoId + "\" />";
-                                videoList += "</li>";
+                                let id = "#videoBox" + (i+1);
+                                let html = "<iframe width = \"640\" height = \"360\" src = \"http://www.youtube.com/embed/" + items[i].id.videoId + "\" />";
+                                $(id).html(html);
                             }
                             
                             $("#youtubeList").html(videoList);
@@ -102,7 +118,7 @@
         <div id='myTable' width = 100%>
         </div>
         
-        <div id = "youtubeList">
+        <div id = "youtubeList" width = 100%>
         </div>
     </body>
 </html>
