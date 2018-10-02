@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Creative Project</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        
+        <script>
+            $(document).ready(function() 
+            {
+                console.log( "ready!" );
+                
+                var tableCode = "<table style=\"width:100%\">";
+                var counter = 1;
+                for (var i = 1; i < 6; i++)
+                {
+                    tableCode += "<tr>";
+                    for (var j = 1; j < 5; j++)
+                    {
+                        tableCode += "<td>";
+                        tableCode += "<div style=\"background-color:lightblue\" id=\"box" + counter + "\">";
+                        tableCode += "<h3>box" + counter + "</h3>";
+                        tableCode += "<p>This is a paragraph.</p>"
+                        tableCode += "</div>"
+                        tableCode += "</td>"
+                        
+                        counter++;
+                    }
+                    tableCode += "</tr>";
+                }
+                tableCode += "</table>"
+                $("#myTable").html(tableCode);
+                
+                $("#searchButton").click(function(e) 
+                {
+                    var value = $("#searchBox").val(); 
+                    console.log(value);
+                    e.preventDefault();
+                });
+            });
+            
+            
+        </script>
+    </head>
+    
+    <body>
+        <h1>
+            News
+        </h1>
+        
+        Search Anything You Like!
+        <input type = "text" id = "searchBox" value = ""><br>
+        <input id="searchButton" type="submit" value="Submit">
+        
+        "<div id='myTable' width = 100%>"
+        </div>
+    </body>
+</html>
