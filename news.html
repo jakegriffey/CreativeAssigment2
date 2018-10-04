@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Creative Project</title>
+        <title>Current News</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
         
@@ -18,7 +18,7 @@
                     for (var j = 1; j < 5; j++)
                     {
                         tableCode += "<td>";
-                        tableCode += "<div style=\"background-color:lightblue\" id=\"box" + counter + "\">";
+                        tableCode += "<div class = \"box\" id=\"box" + counter + "\">";
                         tableCode += "</div>"
                         tableCode += "</td>"
                         
@@ -111,9 +111,10 @@
             News
         </h1>
         
-        Search Anything You Like!
-        <input type = "text" id = "searchBox" value = ""><br>
+        <p>Search Anything You Like!</p>
+        <input type = "text" id = "searchBox" value = "">
         <input id="searchButton" type="submit" value="Submit">
+        <p>Enter a search term and hit submit to see the top 20 most recent articles and top 6 most recent videos on the subject</p>
         
         <div id='myTable' width = 100%>
         </div>

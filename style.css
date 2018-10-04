@@ -1,7 +1,24 @@
+@font-face {
+    font-family: GoodNews;
+    src: url("./GoodNews.otf");
+}
+
+@font-face {
+    font-family: OldNewspaper;
+    src: url("./OldNewspaperTypes.ttf")
+}
+
 body
 {
     background-color: skyblue;
     text-align: center;
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Blurred-city-lights-hd-wallpapers-PIC-WPC008958.jpg");
+    background-size: cover;
+}
+
+h1 {
+    font-family: GoodNews;
+    font-size: 52px;
 }
 
 table
@@ -12,4 +29,21 @@ table
 .myTable
 {
     background-color: skyblue;
+}
+
+.box {
+    /*background-color: #aee2e2;*/
+}
+
+a:link {
+    color: #b5fcfc;
+}
+
+a:visited {
+    color: lightgray;
+}
+p {
+    font-family: OldNewspaper;
+    text-align: center;
+    color: white;
 }
